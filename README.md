@@ -51,7 +51,7 @@ Hai suggerimenti o vuoi contribuire? Apri una **Issue** o invia una **Pull Reque
 
 ## 👨‍💻 Autore
 
-**[Simone Hueber](https://github.com/simo-hue)**  
+**[Simone Mattioli](https://github.com/simo-hue)**  
 Studente di Informatica — Università di Verona
 
 ---
