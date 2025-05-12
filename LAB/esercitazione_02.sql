@@ -1,8 +1,8 @@
 --Esercizio 1
 --Visualizzare tutti i musei della città di Verona con il loro giorno di chiusura.
---SELECT nome, città, giornochiusura
---FROM museo
---WHERE LOWER(città) = LOWER('Verona')
+SELECT nome, città, giornochiusura
+FROM museo
+WHERE LOWER(città) = LOWER('Verona')
 
 --Esercizio 2
 --Visualizzare per ogni mostra che inizia con la lettera 'M', una stringa composta dal titolo e dalla città in cui si svolge.
