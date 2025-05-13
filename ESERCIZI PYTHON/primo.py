@@ -1,3 +1,4 @@
+from time import sleep
 import psycopg2
 from datetime import date
 from decimal import Decimal
@@ -60,19 +61,23 @@ def esegui_query(connessione, query):
         print("Esito della query: {:s}".format(cursore.statusmessage))
         if connessione.notices:
             print("Eventuali notifiche: {:s}".format(connessione.notices[-1]))
+            
+        for tupla in cursore:
+            print(tupla)
+
+        sleep(3)
 
 def rimuovi_entry(connessione):
     
     with connessione.cursor() as cursore:
-        id = input("Inserisci l'id dell'entry da eliminare: ")
-        cursore.execute("DELETE FROM Spese WHERE id=1")
+        id = int(input("Inserisci l'id dell'entry da eliminare: "))
+        cursore.execute("DELETE FROM Spese WHERE id=%s", (id,))
         print("Esito dell'eliminazione dell'entry: {:s}".format(cursore.statusmessage))
         
         if connessione.notices:
             print("Eventuali notifiche: {:s}".format(connessione.notices[-1]))
         
         connessione.commit()
-        leggi(connessione)
 
 def main():
     connessione = None
@@ -104,7 +109,8 @@ def main():
         while True:
             print("Menu:")
             print("situazione attuale:\n")
-            leggi(connessione + "\n")
+            leggi(connessione)
+            print("\n")
             
             print("0. Aggiungi default")
             print("1. Aggiungi personalizzata")
