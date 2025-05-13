@@ -1,2 +1,5 @@
-./db
-ESERCIZI PYTHON/mysecrets.py
+# Ignora l'intera cartella del virtual environment
+db/
+
+# Ignora file di configurazione sensibili
+**/mysecrets.py
