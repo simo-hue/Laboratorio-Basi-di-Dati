@@ -7,9 +7,48 @@
 --
 -- La soluzione ha 10 righe.
 --
-
-
+-- Mia sbagliata
+select distinct persona.nome, persona.cognome, facolta.nome, COUNT(inserogato.id)
+from facolta join inserogato on inserogato.id_facolta = facolta.id
+					join corsostudi on inserogato.id_corsostudi = corsostudi.id
+					join docenza on inserogato.id = docenza.id_inserogato
+					join persona on docenza.id_persona = persona.id
+where inserogato.annoaccademico = '2009/2010'
+group by persona.nome, persona.cognome, facolta.nome
+order by persona.cognome ASC;
 --
+
+CREATE TEMP VIEW OreDocente( docente, oreTot, facolta ) AS (
+  SELECT D.id_persona, SUM( D.orelez ), F.nome
+  FROM Docenza D
+    JOIN InsErogato IE ON D.id_inserogato = IE.id
+    JOIN Facolta F ON IE.id_facolta = F.id
+  WHERE IE.annoaccademico = '2009/2010'
+  GROUP BY D.id_persona, F.nome
+);
+
+SELECT DISTINCT P.id , P.cognome, P.nome, OD.facolta, OD.oreTot
+FROM Persona P JOIN OreDocente OD ON P.id = OD.docente
+WHERE ROW( OD.oreTot, OD.facolta ) IN (
+  SELECT MAX (oreTot) AS maxOre, facolta
+  FROM OreDocente
+  GROUP BY facolta
+)
+ORDER BY cognome;
+
+
+
+-- OPPURE --
+
+SELECT P.id, P.cognome, P.nome, OD.facolta , OD.oreTot
+FROM Persona P JOIN OreDocente OD ON P.id = OD.docente JOIN (
+  SELECT MAX ( oreTot ) AS maxOre, facolta
+  FROM OreDocente
+  GROUP BY facolta
+) AS M ON M.facolta = OD.facolta AND OD.oreTot = M.maxOre
+ORDER BY cognome;
+
+
 -- Esercizio 2
 -- Trovare gli insegnamenti (esclusi i moduli e le unità logistiche)
 -- del corso di studi con id=240 erogati nel 2009/2010 e nel 2010/2011
