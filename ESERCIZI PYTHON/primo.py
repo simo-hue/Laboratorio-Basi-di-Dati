@@ -1,15 +1,14 @@
 import psycopg2
 from datetime import date
 from decimal import Decimal
-from mysecrets import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, DB_PORT
+from mysecrets import DB_HOST, DB_NAME, DB_USER, DB_PASSWORD
 
 try:
     connessione = psycopg2.connect(
     host=DB_HOST,
     database=DB_NAME,
     user=DB_USER,
-    password=DB_PASSWORD,
-    port=DB_PORT
+    password=DB_PASSWORD
 )
 
     with connessione:

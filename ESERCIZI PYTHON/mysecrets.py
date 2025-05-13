@@ -1,6 +1,5 @@
 # mysecrets.py
-DB_HOST = "localhost"
-DB_NAME = "nome_database"
-DB_USER = "nome_utente"
-DB_PASSWORD = "password"
-DB_PORT = "5432"
+DB_HOST = "dbserver.scienze.univr.it"
+DB_NAME = "id613cet"
+DB_USER = "id613cet"
+DB_PASSWORD = "prova"
