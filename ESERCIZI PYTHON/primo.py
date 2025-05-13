@@ -40,6 +40,20 @@ def leggi(connessione):
             print('-' * 55)
             print("{:>40s} {:10.2f}".format("Totale", tot))
 
+def aggiungi(connessione):
+    with connessione.cursor() as cursore:
+        data = input("Inserisci la data (AAAA-MM-GG): ")
+        voce = input("Inserisci la voce: ")
+        importo = input("Inserisci l'importo: ")
+        cursore.execute("INSERT INTO Spese(data, voce, importo) VALUES (%s, %s, %s)", (data, voce, importo))
+        print("Esito dell'inserimento della tupla: {:s}".format(cursore.statusmessage))
+        
+        if connessione.notices:
+            print("Eventuali notifiche: {:s}".format(connessione.notices[-1]))
+        connessione.commit()
+        
+        leggi(connessione)
+        
 def esegui_query(connessione, query):
     with connessione.cursor() as cursore:
         cursore.execute(query)
@@ -47,8 +61,18 @@ def esegui_query(connessione, query):
         if connessione.notices:
             print("Eventuali notifiche: {:s}".format(connessione.notices[-1]))
 
-def rimuovi_entry(connessione, query):
-    print("eliminai")
+def rimuovi_entry(connessione):
+    
+    with connessione.cursor() as cursore:
+        id = input("Inserisci l'id dell'entry da eliminare: ")
+        cursore.execute("DELETE FROM Spese WHERE id=1")
+        print("Esito dell'eliminazione dell'entry: {:s}".format(cursore.statusmessage))
+        
+        if connessione.notices:
+            print("Eventuali notifiche: {:s}".format(connessione.notices[-1]))
+        
+        connessione.commit()
+        leggi(connessione)
 
 def main():
     connessione = None
@@ -79,29 +103,34 @@ def main():
 
         while True:
             print("Menu:")
-            print("1. Aggiungi una nuova")
+            print("situazione attuale:\n")
+            leggi(connessione + "\n")
+            
+            print("0. Aggiungi default")
+            print("1. Aggiungi personalizzata")
             print("2. Leggi tutte le tuple")
             print("3. Esegui una query specifica")
             print("4. Eliminare una entry")
             print("5. Esci")
             
             scelta = input("Scegli un'opzione: ")
-            if scelta == "1":
+            if scelta == "0":
                 aggiungi_default(connessione)
+            if scelta == "1":
+                aggiungi(connessione)
             elif scelta == "2":
                 leggi(connessione)
             elif scelta == "3":
                 query = input("Inserisci la query: ")
                 esegui_query(connessione, query)
             elif scelta == "4":
-                query = input("Inserisci la query: ")
-                rimuovi_entry(connessione, query)
+                rimuovi_entry(connessione)
             elif scelta == "5":
+                connessione.close()
+                print("Connessione chiusa")
                 break
             else:
                 print("Scelta non valida. Riprova.")
-
-        
 
     except Exception as e:
         print("Errore:", e)
