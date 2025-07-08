@@ -35,7 +35,7 @@ WHERE prezzoRidotto IS NULL;
 --Visualizzare tutte le mostre non terminate in ordine di data inizio e, in caso di pari data inizio, data fine.
 SELECT *
 FROM mostra
-WHERE fine > CURRENT_DATE\
+WHERE fine > CURRENT_DATE
 ORDER BY inizio, fine;
 
 --Esercizio 7
