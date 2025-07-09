@@ -4,3 +4,6 @@ db/
 # Ignora file di configurazione sensibili
 PREPARAZIONE ALL'ESAME ( test )/TEMI ESERCIZI/ESERCITAZIONI/mysecrets.py
 PREPARAZIONE ALL'ESAME ( test )/mysecrets.py
+
+# Venv
+.pi 
