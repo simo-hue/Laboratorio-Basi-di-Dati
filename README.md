@@ -18,6 +18,7 @@ Contiene materiale didattico, esercitazioni, tracce d'esame e appunti utili per 
 
 - **Parte Teorica (Progettazione e Modellazione dei Dati):** Prof. Alberto Belussi  
 - **Laboratorio e Tecnologie per le Basi di Dati:** Prof.ssa Sara Migliorini
+- **Link Panopto per le video lezioni: ** https://univr.cloud.panopto.eu/Panopto/Pages/Sessions/List.aspx#folderID=%2228dae6c0-99c9-4309-81ba-b09d00ec9117%22
 
 ---
 ## 📦 Contenuto del Repository
