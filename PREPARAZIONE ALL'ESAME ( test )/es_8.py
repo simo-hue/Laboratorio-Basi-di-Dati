@@ -104,7 +104,8 @@ def main():
         x = input("")
         
         clear()
-        
+    
+    # Qui viene fatto il COMMIT in automatico ( Ma connessione ANCORA APERTA )  
         
     disconnect(conn)
     if(conn):
