@@ -38,8 +38,12 @@ def stampaTutto(connessione):
     with connessione.cursor() as cursore:
         cursore.execute("SELECT * FROM Museo")
         risultati = cursore.fetchall()
-        for risultato in risultati:
-            print(risultato)
+        
+        if(risultati):
+            for risultato in risultati:
+                print(risultato)
+        else:
+            print("Non ci sono record nel database")
 
 def remove(connessione):
     """ Inserisci un record nel database."""
