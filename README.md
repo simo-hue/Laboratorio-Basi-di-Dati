@@ -117,7 +117,7 @@ Contiene materiale didattico, esercitazioni, tracce d'esame e appunti utili per 
 ## 📌 Contenuti Principali
 
 - ✅ Esercitazioni SQL con soluzioni (`.sql` + `.pdf`)
-- ✅ Slide ufficiali del corso e materiali sulle transazioni e concorrenza
+- ✅ Slide ufficiali del corso
 - ✅ Prove intermedie ed esami passati con testi e soluzioni
 - ✅ Appunti e suggerimenti utili per superare l’esame teorico
 
